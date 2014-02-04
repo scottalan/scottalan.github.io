@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Scott Alan Henry]]></title>
+  <link href="http://scottalan.me/atom.xml" rel="self"/>
+  <link href="http://scottalan.me/"/>
+  <updated>2014-02-04T03:07:26-06:00</updated>
+  <id>http://scottalan.me/</id>
+  <author>
+    <name><![CDATA[scottalan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
