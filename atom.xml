@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Scott Alan Henry]]></title>
-  <link href="http://scottalan.github.io/atom.xml" rel="self"/>
-  <link href="http://scottalan.github.io/"/>
-  <updated>2014-02-04T03:25:48-06:00</updated>
-  <id>http://scottalan.github.io/</id>
+  <link href="http://scottalan.me/atom.xml" rel="self"/>
+  <link href="http://scottalan.me/"/>
+  <updated>2014-02-04T03:30:28-06:00</updated>
+  <id>http://scottalan.me/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
     
