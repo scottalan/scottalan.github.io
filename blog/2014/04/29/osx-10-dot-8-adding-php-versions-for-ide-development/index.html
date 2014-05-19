@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Scott Alan Henry</title>
+  <title>OSX 10.8: Adding PHP Versions for IDE Development - Scott Alan Henry</title>
   <meta name="author" content="scottalan">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://scottalan.github.io">
+  <link rel="canonical" href="http://scottalan.github.io/blog/2014/04/29/osx-10-dot-8-adding-php-versions-for-ide-development">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Scott Alan Henry" type="application/atom+xml">
@@ -63,15 +63,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/04/29/osx-10-dot-8-adding-php-versions-for-ide-development/">OSX 10.8: Adding PHP Versions for IDE Development</a></h1>
+      <h1 class="entry-title">OSX 10.8: Adding PHP Versions for IDE Development</h1>
     
     
       <p class="meta">
@@ -94,7 +91,7 @@
   </header>
 
 
-  <div class="entry-content"><p>You will need <a href="https://developer.apple.com/downloads/index.action">Xcode and Command Line Tools</a> installed.</p>
+<div class="entry-content"><p>You will need <a href="https://developer.apple.com/downloads/index.action">Xcode and Command Line Tools</a> installed.</p>
 
 <p>You don&rsquo;t have to use <a href="http://www.finkproject.org/">Fink</a> as your package manager but I find it nice to be able to just use the commands I am used to
 when working on a server.</p>
@@ -294,60 +291,16 @@ that I started with to handle the first part of getting everything into place, b
 
 <p>In your IDE you can set the interpreter to: <code>/opt/phps/5.5.11/bin</code> for example&hellip;</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/04/mysql-mac-osx/">Mysql Mac OSX</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">scottalan</span></span>
 
-<time datetime="2014-02-04T03:37:36-06:00" pubdate data-updated="true">Feb 4<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Wanted to link to this post because it saved me a headache when trying to get drush to work locally.</p>
-
-<p><a href="http://pixelhippo.com/index.php/2013/02/06/configuring-mysql-on-mac-osx-lion-mysql-command-not-found/">http://pixelhippo.com/index.php/2013/02/06/configuring-mysql-on-mac-osx-lion-mysql-command-not-found/</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/04/translations-in-drupal7/">Translations in Drupal7</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -359,173 +312,40 @@ that I started with to handle the first part of getting everything into place, b
   
 
 
-<time datetime="2014-02-04T03:35:11-06:00" pubdate data-updated="true">Feb 4<span>th</span>, 2014</time>
-        
-      </p>
+<time datetime="2014-04-29T12:30:01-05:00" pubdate data-updated="true">Apr 29<span>th</span>, 2014</time>
+      
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>Trials and tribulations of a Drupal 7 multilingual site&hellip;
-This is way less complicated if you set up your languages from the start.</p>
-
-<p>Assumptions:</p>
-
-<p>You have a working Drupal 7 site. (I&rsquo;m using 7.22)
-You know how to install modules.
-Some drush experience is good but not necessary.
-You need a second language on your site.
-I spent some time investigating the best options for creating a multilingual site and this is what I&rsquo;ve come up with. This works for me and may not work for everyone. I will list the modules and versions that I&rsquo;m using in hopes that it will help someone else.</p>
-
-<p>There may be a few modules that you will need depending on your use case. For this post I&rsquo;m only going to touch on the translation/multilingual modules that you need.</p>
-
-<p>NOTE: I ran into this problem and thought I&rsquo;d bring it up now as it caused some issues and quite some time trying to find a solution.</p>
-
-<p>If you have existing nodes more than likely they have a language of &lsquo;und &rsquo; in the database.
-Please make sure you have a database backup before trying this. This is always good practice, especially if this is a production site. I recommend never running anything on production site or it&rsquo;s database before first trying it out in a development environment first.
-Run this query in an update hook or (because I have a dev site) I just ran this query in SequelPro.
-UPDATE node SET language = &lsquo;en&rsquo; WHERE language = &lsquo;und&rsquo;;
-^ This assumes you are using English as you default language.
-​If at any time something doesn&rsquo;t seem to be showing up or displaying properly just clear the cache (drush cc all). I&rsquo;m running Nginx, php5-fpm, and Varnish so I&rsquo;ve had to do this a few times. This will just depend on your setup.</p>
-
-<p>To get started you will need to download the following:</p>
-
-<p><a href="https://drupal.org/project/i18n">https://drupal.org/project/i18n</a>
-<a href="https://drupal.org/project/l10n_client">https://drupal.org/project/l10n_client</a>
-<a href="https://drupal.org/project/l10n_update">https://drupal.org/project/l10n_update</a>
-<a href="https://drupal.org/project/tmgmt">https://drupal.org/project/tmgmt</a>
-<a href="https://drupal.org/project/tmgmt_microsoft">https://drupal.org/project/tmgmt_microsoft</a> (for translations)
-<a href="https://drupal.org/project/lang_dropdown">https://drupal.org/project/lang_dropdown</a>
-<a href="https://drupal.org/project/languageicons">https://drupal.org/project/languageicons</a> (adds icons to the switcher)
-<a href="https://drupal.org/project/title">https://drupal.org/project/title</a>
-<a href="https://drupal.org/project/variable">https://drupal.org/project/variable</a>
-Modules that we will enable:</p>
-
-<p>Core
-Locale (locale)
-Contrib
-Entity API (entity)
-Views (views)
-Ctools (ctools)
-Views Bulk Operations (views_bulk_operations)
-Internationalization (i18n)
-Entity Translation (entity_translation)</p>
-
-<p>Localization client (l10n_client)
-Localization update (l10n_update)</p>
-
-<p>Translation Management Core (tmgmt)
-Translation Management UI (tmgmt_ui)
-Entity Source (tmgmt_entity)
-Entity Source User Interface (tmgmt_entity_ui)
-Translation Management Field (tmgmt_field)
-Microsoft Translator (tmgmt_microsoft)</p>
-
-<p>Title (title)
-Variable (variable)
-Variable Admin (variable_admin)
-Drush command to install all modules we need:</p>
-
-<p>For this example I&rsquo;m going to add Spanish as a second language. I&rsquo;m also not going to use core&rsquo;s Content translation module but rather going to do this using Entity translation instead. This will allow us to have one node with multiple translations per field vs. having to have multiple nodes, one for each translation.</p>
-
-<p>Add another language:</p>
-
-<p>/admin/config/regional/language
-Click + Add language
-Choose <code>Spanish</code> from the select list
-Click on the Detection and Selection tab
-(fill this in)
-From here you can go to: /admin/config/regional/translate and see how much has already been translated for you.</p>
-
-<p>Entity translation:</p>
-
-<p>/admin/config/regional/entity_translation
-For now we will leave the defaults selected but we will be coming back here to add Taxonomy term and Comment to the Translatable Entity Types.
-You should see that Node is already selected, if not then select it now and save.
-i18n:</p>
-
-<p>/admin/config/regional/i18n
-Select Enabled languages only
-Tmgmt:</p>
-
-<p>/admin/config/regional/tmgmt
-You can see that there haven&rsquo;t been any jobs created yet.
-You may also see a warning at the top of the page:
-Entity translation is not enabled for any of existing content types. To use this functionality go to Content types administration and enable entity translation for desired content types.
-We will get to this in a moment&hellip;</p>
-
-<p>Click on the Entity Sources tab
-We haven&rsquo;t added any entities yet
-Click on the Translators tab
-We will be adding a translator as well.
-On the Settings tab we will be leaving the defaults.
-For all of your existing content types or any new ones:</p>
-
-<p>/admin/structure/types
-Click Edit on the content type you want to add Multilingual support for
-Click on Publishing options and under Multilingual support select:
-Enabled, with field translation
-I also choose Hide content translation links because I will be using the language switcher block.
-Save</p>
-
-<p>Now head back over to: /admin/config/regional/tmgmt/entity</p>
-
-<p>You should see a list of nodes on your system that belong to the content type you just edited.</p>
-
-<p>If you would like to use the Microsoft translator then follow these steps:</p>
-
-<p>Enable the Microsoft Translator (tmgmt_microsoft)
-Now when you visit /admin/config/regional/tmgmt/translators you should see it.
-We need to configure the translator
-Click Edit
-You will need to head over to: <a href="https://datamarket.azure.com/dataset/1899a118-d202-492c-aa16-ba21c33c06cb">https://datamarket.azure.com/dataset/1899a118-d202-492c-aa16-ba21c33c06cb</a> and sign up for a free account.
-Under MICROSOFT TRANSLATOR PLUGIN SETTINGS​
-Enter your Microsoft Customer Id and Primary Account Key</p>
-
-<p>Just to make sure double check the REMOTE LANGUAGES MAPPINGS and make sure they are what you expect.</p>
-
-<p>Save</p>
-
-<p>There are a couple more things we need to do to make sure we make all of our fields available to the translator:</p>
-
-<p>Go back to the content type that we are adding language options to.
-Under the Manage Fields tab you should see an operation under &lsquo;Title&rsquo; that allows you to replace it. Do this.
-Now edit the &lsquo;Body&rsquo;
-At the bottom of the page under Field translation click Enable translation
-Leave the migration setting checked
-I cleared cache here (drush cc all)
-Go back to the Entity Sources tab</p>
-
-<p>Lets try a translation&hellip; Select one of your nodes and then click Request translation</p>
-
-<p>You should notice that it wants to translate from English to Spanish and it should give you a word count.</p>
-
-<p>Click Send to translator</p>
-
-<p>When it&rsquo;s done you will be directed back to the Entity Sources tab. Click the yellow Ready for review box next to your node. If it looks good (or like me, you think it looks good) then click the checkmarks to the right of each field and Save as completed. You should now notice that the yellow box is now green.</p>
-
-<p>Add the Language switcher block to a region and then test it out and make sure you can switch back and forth and see the expected results.</p>
-
-<p>Remember, you will only see Spanish for the nodes that you have already translated.</p>
-
-<p>If you end up with this error: Rejected by Microsoft Translator: TranslateApiExceptionMethod: Translate()Message: Cannot find an active Azure Market Place Translator Subscription associated with the request credentials.message id=3817.V2_Rest.Translate.3361868A</p>
-
-<p>Do this:</p>
-
-<p><a href="https://datamarket.azure.com/developer/applications/register">https://datamarket.azure.com/developer/applications/register</a> and register your application. Use the clientid and secret you created when you created your account.</p>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://scottalan.github.io/blog/2014/04/29/osx-10-dot-8-adding-php-versions-for-ide-development/" data-via="fuzzybutter" data-counturl="http://scottalan.github.io/blog/2014/04/29/osx-10-dot-8-adding-php-versions-for-ide-development/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/04/mysql-mac-osx/" title="Previous Post: Mysql Mac OSX">&laquo; Mysql Mac OSX</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -550,7 +370,7 @@ Go back to the Entity Sources tab</p>
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/scottalan">@scottalan</a> on GitHub
@@ -592,6 +412,7 @@ Go back to the Entity Sources tab</p>
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -606,7 +427,10 @@ Go back to the Entity Sources tab</p>
       var disqus_shortname = 'scottalan';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://scottalan.github.io/blog/2014/04/29/osx-10-dot-8-adding-php-versions-for-ide-development/';
+        var disqus_url = 'http://scottalan.github.io/blog/2014/04/29/osx-10-dot-8-adding-php-versions-for-ide-development/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

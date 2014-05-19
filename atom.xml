@@ -4,7 +4,7 @@
   <title><![CDATA[Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-02-04T12:14:12-06:00</updated>
+  <updated>2014-05-19T11:06:06-05:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -12,6 +12,213 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OSX 10.8: Adding PHP Versions for IDE Development]]></title>
+    <link href="http://scottalan.github.io/blog/2014/04/29/osx-10-dot-8-adding-php-versions-for-ide-development/"/>
+    <updated>2014-04-29T12:30:01-05:00</updated>
+    <id>http://scottalan.github.io/blog/2014/04/29/osx-10-dot-8-adding-php-versions-for-ide-development</id>
+    <content type="html"><![CDATA[<p>You will need <a href="https://developer.apple.com/downloads/index.action">Xcode and Command Line Tools</a> installed.</p>
+
+<p>You don&rsquo;t have to use <a href="http://www.finkproject.org/">Fink</a> as your package manager but I find it nice to be able to just use the commands I am used to
+when working on a server.</p>
+
+<p>Download the version of Fink you need for your OS <a href="http://www.finkproject.org/download/index.php?phpLang=en">http://www.finkproject.org/download/index.php?phpLang=en</a></p>
+
+<p>Allow Fink to install to its default location <code>/sw</code></p>
+
+<p>I will assume you can handle the above so we will jump right in&hellip;</p>
+
+<p><code>mkdir -p /opt/src</code></p>
+
+<p>Found <a href="https://github.com/wilmoore/php-version/wiki/Building-PHP-Versions#do-it-yourself-recommended-for-those-that-need-more-control">this snippet</a>
+that I started with to handle the first part of getting everything into place, but had to alter it a bit so that it would work for my use-case.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>if [ $# -ne 1 ]; then
+</span><span class='line'>  echo "Usage: $0 expects at least one argument: [php version]"
+</span><span class='line'>  echo "i.e., 5.3.28 - http://php.net/downloads.php"
+</span><span class='line'>  exit
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>PHP_TARGET_VERSION=${1}
+</span><span class='line'>
+</span><span class='line'>PHP_INSTALL_PREFIX=/opt/phps
+</span><span class='line'>
+</span><span class='line'>mkdir -p /tmp/src/php-${PHP_TARGET_VERSION}
+</span><span class='line'>
+</span><span class='line'>cd /tmp/src/php-${PHP_TARGET_VERSION}
+</span><span class='line'>
+</span><span class='line'>curl -# -L http://us1.php.net/get/php-${PHP_TARGET_VERSION}.tar.gz/from/this/mirror | tar -xz --strip 1
+</span><span class='line'>
+</span><span class='line'>echo "Target Version: ${PHP_TARGET_VERSION}"
+</span><span class='line'>echo "Install Prefix: ${PHP_INSTALL_PREFIX}"
+</span><span class='line'>
+</span><span class='line'>./configure \
+</span><span class='line'>            --sysconfdir=/private/etc \
+</span><span class='line'>            --prefix=${PHP_INSTALL_PREFIX}/${PHP_TARGET_VERSION} \
+</span><span class='line'>            --with-config-file-path=${PHP_INSTALL_PREFIX}/${PHP_TARGET_VERSION}/etc \
+</span><span class='line'>            --mandir=${PHP_INSTALL_PREFIX}/${PHP_TARGET_VERSION}/share/man \
+</span><span class='line'>            --infodir=${PHP_INSTALL_PREFIX}/${PHP_TARGET_VERSION}/share/info \
+</span><span class='line'>            --enable-debug
+</span><span class='line'>
+</span><span class='line'>make
+</span><span class='line'>
+</span><span class='line'>sudo make install
+</span><span class='line'>
+</span><span class='line'># Additional flags that can be set.
+</span><span class='line'>
+</span><span class='line'>#            --with-apxs2=/usr/sbin/apxs \
+</span><span class='line'>#            --enable-cli \
+</span><span class='line'>#            --enable-debug \
+</span><span class='line'>#            --with-libxml-dir=/usr \
+</span><span class='line'>#            --with-openssl=/usr \
+</span><span class='line'>#            --with-kerberos=/usr \
+</span><span class='line'>#            --with-zlib=/usr \
+</span><span class='line'>#            --enable-bcmath \
+</span><span class='line'>#            --with-bz2=/usr \
+</span><span class='line'>#            --enable-calendar \
+</span><span class='line'>#            --disable-cgi \
+</span><span class='line'>#            --with-curl=/usr \
+</span><span class='line'>#            --enable-dba \
+</span><span class='line'>#            --enable-exif \
+</span><span class='line'>#            --enable-ftp \
+</span><span class='line'>#            --with-gd \
+</span><span class='line'>#            --with-freetype-dir=/sw \
+</span><span class='line'>#            --with-jpeg-dir=/sw \
+</span><span class='line'>#            --with-png-dir=/sw \
+</span><span class='line'>#            --enable-gd-native-ttf \
+</span><span class='line'>#            --with-icu-dir=/usr \
+</span><span class='line'>#            --with-iodbc=/usr \
+</span><span class='line'>#            --with-ldap=/usr \
+</span><span class='line'>#            --with-ldap-sasl=/usr \
+</span><span class='line'>#            --with-libedit=/usr \
+</span><span class='line'>#            --enable-mbstring \
+</span><span class='line'>#            --enable-mbregex \
+</span><span class='line'>#            --with-mysql=mysqlnd \
+</span><span class='line'>#            --with-mysqli=mysqlnd \
+</span><span class='line'>#            --without-pear \
+</span><span class='line'>#            --with-pdo-mysql=mysqlnd \
+</span><span class='line'>#            --with-mysql-sock=/var/mysql/mysql.sock \
+</span><span class='line'>#            --with-readline=/usr \
+</span><span class='line'>#            --enable-shmop \
+</span><span class='line'>#            --with-snmp=/usr \
+</span><span class='line'>#            --enable-soap \
+</span><span class='line'>#            --enable-sockets \
+</span><span class='line'>#            --enable-sysvmsg \
+</span><span class='line'>#            --enable-sysvsem \
+</span><span class='line'>#            --enable-sysvshm \
+</span><span class='line'>#            --with-tidy \
+</span><span class='line'>#            --enable-wddx \
+</span><span class='line'>#            --with-xmlrpc \
+</span><span class='line'>#            --with-iconv-dir=/usr \
+</span><span class='line'>#            --with-xsl=/usr \
+</span><span class='line'>#            --enable-zip \
+</span><span class='line'>#            --with-pcre-regex=/usr \
+</span><span class='line'>#            --with-pgsql=/usr \
+</span><span class='line'>#            --with-pdo-pgsql=/usr \</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can then run: <code>sudo php-configure.sh 5.5.11</code> This assumes you have added the script to your $PATH.</p>
+
+<p>Download this: <a href="https://github.com/wilmoore/php-version">https://github.com/wilmoore/php-version</a></p>
+
+<p>Then you can export your path:</p>
+
+<p><code>export PHP_VERSIONS="/opt/phps"</code></p>
+
+<p>Type: <code>which php</code> and you should see you are using the default: <code>/usr/bin</code></p>
+
+<p>This gets you, at a basic level, the versions of php you may need for your IDE.</p>
+
+<p>In your IDE you can set the interpreter to: <code>/opt/phps/5.5.11/bin</code> for example&hellip;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mysql Mac OSX]]></title>
