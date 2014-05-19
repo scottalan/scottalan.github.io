@@ -4,7 +4,7 @@
   <title><![CDATA[Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-05-19T11:06:06-05:00</updated>
+  <updated>2014-05-19T11:31:36-05:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Seldom Used]]></title>
+    <link href="http://scottalan.github.io/blog/2014/05/19/seldom-used/"/>
+    <updated>2014-05-19T11:29:00-05:00</updated>
+    <id>http://scottalan.github.io/blog/2014/05/19/seldom-used</id>
+    <content type="html"><![CDATA[<p>Thought I&rsquo;d store some commands, that I find myself searching for, that I may not use all the time
+but would be nice to have in one spot.</p>
+
+<h1>Untar directory contents in the current directory.</h1>
+
+<p>** <code>tar --strip-components=1 -zxf file.tar.gz</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OSX 10.8: Adding PHP Versions for IDE Development]]></title>
