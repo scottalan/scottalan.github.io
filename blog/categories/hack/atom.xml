@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hack | Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/blog/categories/hack/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-10-30T16:30:39-05:00</updated>
+  <updated>2014-10-30T16:32:53-05:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -62,6 +62,8 @@ diff -r -y --left-column old_all all  &gt; all-diff.txt
 </code></p>
 
 <p>Now I can see a side by side diff of the changes. Of course you will see things that you recognize changing but keep an eye out for anything that doesn&rsquo;t seem quite right.</p>
+
+<p>Sure this is tedious but a heck of a lot better then trying to look through each file individually.</p>
 
 <p>Good Luck! Don&rsquo;t forget to checkout: <a href="https://www.drupal.org/drupalsa05FAQ">https://www.drupal.org/drupalsa05FAQ</a></p>
 
