@@ -4,7 +4,7 @@
   <title><![CDATA[Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-05-19T11:33:36-05:00</updated>
+  <updated>2014-10-30T16:20:50-05:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Helpll SA-CORE-2014-005 Hack]]></title>
+    <link href="http://scottalan.github.io/blog/2014/10/30/helpll-sa-core-2014-005-hack/"/>
+    <updated>2014-10-30T16:17:01-05:00</updated>
+    <id>http://scottalan.github.io/blog/2014/10/30/helpll-sa-core-2014-005-hack</id>
+    <content type="html"><![CDATA[<p>This might at least help find malicious code that could have been injected in module files. Does a cool side-by-side diff and exports to a file so you can easily move through the file and see any differences.</p>
+
+<p>In the following command make sure to put the &lsquo;good&rsquo; drupal install before the potentially &lsquo;bad&rsquo; or existing install.</p>
+
+<p>In this case &lsquo;drupal&rsquo; is just a <code>git clone --branch 7.x http://git.drupal.org/project/drupal.git</code> and a <code>git checkout 7.32</code> and &lsquo;pre-update&rsquo; is my old drupal install that I want to check for malicious code.</p>
+
+<figure class='code'><figcaption><span>-r -y &#8211;left-column drupal pre-update  > dirdiff.txt&#8220;`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>This does a recursive (-r) diff and places the results side-by-side (-y) in a file. The (--left-column) makes it easier to spot the diff.
+</span><span class='line'>
+</span><span class='line'>On mac you can just hold down ```fn + (down arrow)```
+</span><span class='line'>
+</span><span class='line'>Something else you can do for any code you may have been version controlling (we all version control our custom code, right?):
+</span><span class='line'>
+</span><span class='line'>I looked back through my git branches, as I tend to keep them for quite sometime, and I found a branch that I had labeled updates-10-13-14 so I know that these are any updates I may have pushed on the 13th of October. This is two days before the &#39;catastrophe&#39; so this code shouldn&#39;t be affected. I&#39;m working with the Panopoly distro as my base install so all of my custom code exists in sites/all and that&#39;s what I push to GitHub. In the sites directory I placed a directory called: old_all. So here is what I did:
+</span><span class='line'>
+</span><span class='line'>From your sites directory:
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>mkdir old_all
+cd old_all
+git init
+git remote add origin git@github.com:scottalan/[NAME_OF_REPO].git
+git fetch origin
+git checkout origin/updates-10-13-14</p>
+
+<figure class='code'><figcaption><span>-r -y &#8211;left-column drupal pre-update  > dirdiff.txt&#8220;`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>Now I have my PRE &#39;possible hack&#39; code in old_all and where ever I am now in the original all directory. Now it&#39;s just a matter of running the diff command.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>diff -r -y &mdash;left-column old_all all  > all-diff.txt&#8220;`</p>
+
+<p>Now I can see a side by side diff of the changes. Of course you will see things that you recognize changing but keep an eye out for anything that doesn&rsquo;t seem quite right.</p>
+
+<p>Good Luck!</p>
+
+<p>-Scott</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Seldom Used]]></title>

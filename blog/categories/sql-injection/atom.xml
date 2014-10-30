@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Drupal | Scott Alan Henry]]></title>
-  <link href="http://scottalan.github.io/blog/categories/drupal/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Sql Injection | Scott Alan Henry]]></title>
+  <link href="http://scottalan.github.io/blog/categories/sql-injection/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
   <updated>2014-10-30T16:20:50-05:00</updated>
   <id>http://scottalan.github.io/</id>
