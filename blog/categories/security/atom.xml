@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Security | Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/blog/categories/security/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-10-30T16:50:24-05:00</updated>
+  <updated>2014-10-30T17:07:38-05:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -41,6 +41,12 @@ diff -r -y --left-column drupal pre-update  &gt; dirdiff.txt
 <p>This does a recursive (-r) diff and places the results side-by-side (-y) in a file. The (&mdash;left-column) makes it easier to spot the diff.</p>
 
 <p>On mac you can just hold down <code>fn + (down arrow)</code></p>
+
+<p>You should at least see:</p>
+
+<p><img class="center <a" src="href="http://scottalan.github.io/images/mine/diff.png">http://scottalan.github.io/images/mine/diff.png</a>"></p>
+
+<h2>Also</h2>
 
 <p>Something else you can do for any code you may have been version controlling (we all version control our custom code, right?):</p>
 
