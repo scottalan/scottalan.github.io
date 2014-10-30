@@ -4,7 +4,7 @@
   <title><![CDATA[Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-10-30T16:32:53-05:00</updated>
+  <updated>2014-10-30T16:40:16-05:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -69,6 +69,14 @@
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>diff -r -y --left-column old_all all  &gt; all-diff.txt</span></code></pre></td></tr></table></div></figure>
 
+
+<p>You could also exclude certain files to give you less to look through:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>diff -r -y --exclude=*.css --left-column old_all all  &gt; all-diff.txt</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This would exclude any CSS files for example.</p>
 
 <p>Now I can see a side by side diff of the changes. Of course you will see things that you recognize changing but keep an eye out for anything that doesn&rsquo;t seem quite right.</p>
 

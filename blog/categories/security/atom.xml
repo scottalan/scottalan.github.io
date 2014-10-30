@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Security | Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/blog/categories/security/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-10-30T16:32:53-05:00</updated>
+  <updated>2014-10-30T16:40:16-05:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -60,6 +60,13 @@ git checkout origin/updates-10-13-14
 <p><code>
 diff -r -y --left-column old_all all  &gt; all-diff.txt
 </code></p>
+
+<p>You could also exclude certain files to give you less to look through:
+<code>
+diff -r -y --exclude=*.css --left-column old_all all  &gt; all-diff.txt
+</code></p>
+
+<p>This would exclude any CSS files for example.</p>
 
 <p>Now I can see a side by side diff of the changes. Of course you will see things that you recognize changing but keep an eye out for anything that doesn&rsquo;t seem quite right.</p>
 
