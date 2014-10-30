@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Security | Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/blog/categories/security/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-10-30T16:40:16-05:00</updated>
+  <updated>2014-10-30T16:50:24-05:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -31,6 +31,8 @@ and a
 git checkout 7.32
 </code>
 and &lsquo;pre-update&rsquo; is my old drupal install that I want to check for malicious code.</p>
+
+<p>In this case the &ldquo;drupal&rdquo; directory will be on the left. Just switch them around to see the other directory on the left. I chose to do it this way because I wanted to see everything for the the &ldquo;good&rdquo; code and see just lines that were different in what I had before the update.</p>
 
 <p><code>
 diff -r -y --left-column drupal pre-update  &gt; dirdiff.txt
