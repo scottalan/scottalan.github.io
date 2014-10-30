@@ -9,8 +9,7 @@
   <meta name="author" content="scottalan">
 
   
-  <meta name="description" content="1
-Awesome code snippet This might at least help find malicious code that could have been injected in module files. Does a cool side-by-side diff and &hellip;">
+  <meta name="description" content="This might at least help find malicious code that could have been injected in module files. Does a cool side-by-side diff and exports to a file so &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,17 +91,23 @@ Awesome code snippet This might at least help find malicious code that could hav
   </header>
 
 
-<div class="entry-content">
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Awesome code snippet</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This might at least help find malicious code that could have been injected in module files. Does a cool side-by-side diff and exports to a file so you can easily move through the file and see any differences.</p>
+<div class="entry-content"><p>This might at least help find malicious code that could have been injected in module files. Does a cool side-by-side diff and exports to a file so you can easily move through the file and see any differences.</p>
 
 <p>In the following command make sure to put the &lsquo;good&rsquo; drupal install before the potentially &lsquo;bad&rsquo; or existing install.</p>
 
-<p>In this case &lsquo;drupal&rsquo; is just a <code>git clone --branch 7.x http://git.drupal.org/project/drupal.git</code> and a <code>git checkout 7.32</code> and &lsquo;pre-update&rsquo; is my old drupal install that I want to check for malicious code.</p>
+<p>In this case &lsquo;drupal&rsquo; is just a</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone --branch 7.x http://git.drupal.org/project/drupal.git</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and a</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git checkout 7.32</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and &lsquo;pre-update&rsquo; is my old drupal install that I want to check for malicious code.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>diff -r -y --left-column drupal pre-update  &gt; dirdiff.txt</span></code></pre></td></tr></table></div></figure>
@@ -134,7 +139,9 @@ Awesome code snippet This might at least help find malicious code that could hav
 
 <p>Now I have my PRE &lsquo;possible hack&rsquo; code in old_all and where ever I am now in the original all directory. Now it&rsquo;s just a matter of running the diff command.</p>
 
-<p><code>diff -r -y --left-column old_all all  &gt; all-diff.txt</code></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>diff -r -y --left-column old_all all  &gt; all-diff.txt</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Now I can see a side by side diff of the changes. Of course you will see things that you recognize changing but keep an eye out for anything that doesn&rsquo;t seem quite right.</p>
 

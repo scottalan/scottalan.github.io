@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hack | Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/blog/categories/hack/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-10-30T16:27:37-05:00</updated>
+  <updated>2014-10-30T16:29:40-05:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -18,14 +18,19 @@
     <link href="http://scottalan.github.io/blog/2014/10/30/helpll-sa-core-2014-005-hack/"/>
     <updated>2014-10-30T16:17:01-05:00</updated>
     <id>http://scottalan.github.io/blog/2014/10/30/helpll-sa-core-2014-005-hack</id>
-    <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Awesome code snippet</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>This might at least help find malicious code that could have been injected in module files. Does a cool side-by-side diff and exports to a file so you can easily move through the file and see any differences.</p>
+    <content type="html"><![CDATA[<p>This might at least help find malicious code that could have been injected in module files. Does a cool side-by-side diff and exports to a file so you can easily move through the file and see any differences.</p>
 
 <p>In the following command make sure to put the &lsquo;good&rsquo; drupal install before the potentially &lsquo;bad&rsquo; or existing install.</p>
 
-<p>In this case &lsquo;drupal&rsquo; is just a <code>git clone --branch 7.x http://git.drupal.org/project/drupal.git</code> and a <code>git checkout 7.32</code> and &lsquo;pre-update&rsquo; is my old drupal install that I want to check for malicious code.</p>
+<p>In this case &lsquo;drupal&rsquo; is just a
+<code>
+git clone --branch 7.x http://git.drupal.org/project/drupal.git
+</code>
+and a
+<code>
+git checkout 7.32
+</code>
+and &lsquo;pre-update&rsquo; is my old drupal install that I want to check for malicious code.</p>
 
 <p><code>
 diff -r -y --left-column drupal pre-update  &gt; dirdiff.txt
@@ -52,7 +57,9 @@ git checkout origin/updates-10-13-14
 
 <p>Now I have my PRE &lsquo;possible hack&rsquo; code in old_all and where ever I am now in the original all directory. Now it&rsquo;s just a matter of running the diff command.</p>
 
-<p><code>diff -r -y --left-column old_all all  &gt; all-diff.txt</code></p>
+<p><code>
+diff -r -y --left-column old_all all  &gt; all-diff.txt
+</code></p>
 
 <p>Now I can see a side by side diff of the changes. Of course you will see things that you recognize changing but keep an eye out for anything that doesn&rsquo;t seem quite right.</p>
 
