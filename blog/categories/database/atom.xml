@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Database | Scott Alan Henry]]></title>
+  <link href="http://scottalan.github.io/blog/categories/database/atom.xml" rel="self"/>
+  <link href="http://scottalan.github.io/"/>
+  <updated>2014-11-04T09:47:21-06:00</updated>
+  <id>http://scottalan.github.io/</id>
+  <author>
+    <name><![CDATA[scottalan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Amazon S3 Database Backups]]></title>
+    <link href="http://scottalan.github.io/blog/2014/11/04/amazon-s3-database-backups/"/>
+    <updated>2014-11-04T09:22:21-06:00</updated>
+    <id>http://scottalan.github.io/blog/2014/11/04/amazon-s3-database-backups</id>
+    <content type="html"><![CDATA[<h3>NOTE: Once this is done the first time you can just copy the script and s3/ to the new site directory and modify the files.</h3>
+
+<p><code>
+cd /opt
+sudo wget https://github.com/s3tools/s3cmd/archive/master.zip
+sudo unzip master.zip
+cd s3cmd-master/
+sudo python setup.py install
+which s3cmd (/usr/local/bin/s3cmd)
+</code></p>
+
+<hr />
+
+<h1>Just above Drupal root:</h1>
+
+<p><code>
+mkdir s3; cd s3;
+nano s3/mysql.cnf
+</code></p>
+
+<h1>Add this to the mysql.cnf file:</h1>
+
+<p><code>
+[client]
+user=‘DB_USER'
+password=‘DB_PASSWORD'
+</code></p>
+
+<h1>Make a log directory:</h1>
+
+<p><code>
+mkdir log
+</code></p>
+
+<hr />
+
+<h1>You may need the following:</h1>
+
+<p><code>
+sudo apt-get install python-dateutil python-magic
+</code></p>
+
+<h1>Now we can configure s3</h1>
+
+<p><code>
+sudo s3cmd —configure
+(You need the Access Key and the Secret Key from s3.)
+You should see output like: Configuration saved to '/home/scott/.s3cfg’
+Move the .s3cfg file to your s3 directory
+</code></p>
+
+<h1>Add the script just above Drupal root:</h1>
+
+<p><code>
+nano sqlbackup-s3.sh;
+</code></p>
+
+<h1>Add the following contents and make changes to variables where necessary:</h1>
+
+<p>{% gist b006a66bb4f3417285d1 %}</p>
+
+<h1>If sendmail doesn’t send, make sure the log file has a subject line. Should be added by the script:</h1>
+
+<p>subject: S3 database backup</p>
+
+<h1>Run the script and make sure the db uploaded to S3.</h1>
+
+<h1>Now we can setup a cron job.</h1>
+
+<p>crontab -e</p>
+
+<h1>Add the following replacing the path to the script:</h1>
+
+<p>```</p>
+
+<h1>Backup the Cedi Journal database at 12am and 12pm everyday.</h1>
+
+<p>0 0,12 * * * /home/slash/drupal/cedijournal.com/sqlbackup-s3.sh
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
