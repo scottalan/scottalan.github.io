@@ -4,7 +4,7 @@
   <title><![CDATA[Category: S3 | Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/blog/categories/s3/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-11-05T09:10:26-06:00</updated>
+  <updated>2014-11-05T09:11:29-06:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -57,7 +57,7 @@ mkdir log
 <h1>You may need the following:</h1>
 
 <p><code>
-sudo apt-get install python-dateutil python-magic
+sudo apt-get install python-dateutil python-magic;
 </code></p>
 
 <h1>Now we can configure s3</h1>

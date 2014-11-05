@@ -148,55 +148,28 @@ sudo &hellip;">
 <h1>You may need the following:</h1>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install python-dateutil python-magic
-</span><span class='line'> ```
-</span><span class='line'>
-</span><span class='line'># Now we can configure s3
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install python-dateutil python-magic;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>sudo s3cmd —configure;</p>
+<h1>Now we can configure s3</h1>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>(You need the Access Key and the Secret Key from s3.)
-</span><span class='line'>You should see output like: Configuration saved to '/home/[USER]/.s3cfg’
-</span><span class='line'>Move the .s3cfg file to your s3 directory
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'># Add the script just above Drupal root:
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo s3cmd —configure;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>nano sqlbackup-s3.sh;</p>
+<p>(You need the Access Key and the Secret Key from s3.)
+You should see output like: Configuration saved to &lsquo;/home/[USER]/.s3cfg’
+Move the .s3cfg file to your s3 directory</p>
+
+<h1>Add the script just above Drupal root:</h1>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'># Add the following contents and make changes to variables where necessary:
-</span><span class='line'>
-</span><span class='line'><div><script src='https://gist.github.com/b006a66bb4f3417285d1.js'></script>
+</pre></td><td class='code'><pre><code class=''><span class='line'>nano sqlbackup-s3.sh;</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Add the following contents and make changes to variables where necessary:</h1>
+
+<div><script src='https://gist.github.com/b006a66bb4f3417285d1.js'></script>
 <noscript><pre><code>#!/bin/bash
 
 # Make directories: log and backup at the $DIR.
@@ -235,22 +208,24 @@ sleep 5
 # send without it.
 sendmail $EMAIL &lt; $DIR/s3/log/mysqlback.log</code></pre></noscript></div>
 
-</span><span class='line'>
-</span><span class='line'># If sendmail doesn’t send, make sure the log file has a subject line. Should be added by the script:
-</span><span class='line'>subject: S3 database backup
-</span><span class='line'>
-</span><span class='line'># Run the script and make sure the db uploaded to S3.
-</span><span class='line'>
-</span><span class='line'># Now we can setup a cron job.
-</span><span class='line'>crontab -e
-</span><span class='line'>
-</span><span class='line'># Add the following replacing the path to the script:</span></code></pre></td></tr></table></div></figure>
 
+<h1>If sendmail doesn’t send, make sure the log file has a subject line. Should be added by the script:</h1>
 
-<h1>Backup the database at 12am and 12pm everyday.</h1>
+<p>subject: S3 database backup</p>
 
-<p>0 0,12 * * * /PATH/TO/DIR/ABOVE/ROOT/sqlbackup-s3.sh
-&#8220;`</p>
+<h1>Run the script and make sure the db uploaded to S3.</h1>
+
+<h1>Now we can setup a cron job.</h1>
+
+<p>crontab -e</p>
+
+<h1>Add the following replacing the path to the script:</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Backup the database at 12am and 12pm everyday.
+</span><span class='line'>0 0,12 * * * /PATH/TO/DIR/ABOVE/ROOT/sqlbackup-s3.sh</span></code></pre></td></tr></table></div></figure>
+
 </div>
   
   
