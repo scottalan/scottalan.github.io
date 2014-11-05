@@ -4,7 +4,7 @@
   <title><![CDATA[Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-10-30T17:08:43-05:00</updated>
+  <updated>2014-11-05T09:06:32-06:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -12,6 +12,157 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Amazon S3 Database Backups]]></title>
+    <link href="http://scottalan.github.io/blog/2014/11/04/amazon-s3-database-backups/"/>
+    <updated>2014-11-04T09:22:21-06:00</updated>
+    <id>http://scottalan.github.io/blog/2014/11/04/amazon-s3-database-backups</id>
+    <content type="html"><![CDATA[<h3>NOTE: Once this is done the first time you can just copy the script and s3/ to the new site directory and modify the files.</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /opt
+</span><span class='line'>sudo wget https://github.com/s3tools/s3cmd/archive/master.zip
+</span><span class='line'>sudo unzip master.zip
+</span><span class='line'>cd s3cmd-master/
+</span><span class='line'>sudo python setup.py install
+</span><span class='line'>which s3cmd (/usr/local/bin/s3cmd)</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h1>Just above Drupal root:</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir s3; cd s3;
+</span><span class='line'>nano s3/mysql.cnf</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Add this to the mysql.cnf file:</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[client]
+</span><span class='line'>user=‘DB_USER'
+</span><span class='line'>password=‘DB_PASSWORD'</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Make a log directory:</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir log</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h1>You may need the following:</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install python-dateutil python-magic
+</span><span class='line'> ```
+</span><span class='line'>
+</span><span class='line'># Now we can configure s3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>sudo s3cmd —configure
+(You need the Access Key and the Secret Key from s3.)
+You should see output like: Configuration saved to &lsquo;/home/scott/.s3cfg’
+Move the .s3cfg file to your s3 directory</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'># Add the script just above Drupal root:
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>nano sqlbackup-s3.sh;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'># Add the following contents and make changes to variables where necessary:
+</span><span class='line'>
+</span><span class='line'><div><script src='https://gist.github.com/b006a66bb4f3417285d1.js'></script>
+<noscript><pre><code>#!/bin/bash
+
+# Make directories: log and backup at the $DIR.
+# Move the &#39;.s3cfg&#39; file to the $DIR as well.
+
+# NOTE: CHANGE ALL VARIABLES TO MATCH YOUR NEEDS!
+
+# The name of the s3 bucket on Amazon.
+S3BUCKET=&quot;REPLACE_BUCKET_NAME&quot;
+
+# The name of the database to backup.
+DBNAME=&quot;REPLACE_DB_NAME&quot;
+
+# The email address to send log file to.
+EMAIL=&quot;REPLACE_EMAIL_ADDRESS&quot;
+
+# The path to directory above Drupal root.
+DIR=&quot;REPLACE/PATH/TO/DIR&quot;
+
+# Local sql dump directory.
+SQLDUMP=$DIR/sqldumps
+
+# The name of the file to be created for the backup.
+FILE=$DBNAME-`date &quot;+%Y%m%d-%H%M&quot;`.sql.gz
+
+if [ ! -f $DIR/s3/log/mysqlback.log ]; then
+  /usr/bin/touch $DIR/s3/log/mysqlback.log
+  echo &quot;subject: S3 database backup&quot; &gt;&gt; $DIR/s3/log/mysqlback.log
+fi
+
+mysqldump --defaults-extra-file=$DIR/s3/mysql.cnf $DBNAME | gzip -9 &gt; $SQLDUMP/$FILE
+/usr/local/bin/s3cmd --config $DIR/s3/.s3cfg put $SQLDUMP/$FILE s3://$S3BUCKET/ &gt;&gt; $DIR/s3/log/mysqlback.log
+sleep 5
+
+# This assumes there is a &#39;subject: My subject&#39; line in mysqlback.log. Will not
+# send without it.
+sendmail $EMAIL &lt; $DIR/s3/log/mysqlback.log</code></pre></noscript></div>
+
+</span><span class='line'>
+</span><span class='line'># If sendmail doesn’t send, make sure the log file has a subject line. Should be added by the script:
+</span><span class='line'>subject: S3 database backup
+</span><span class='line'>
+</span><span class='line'># Run the script and make sure the db uploaded to S3.
+</span><span class='line'>
+</span><span class='line'># Now we can setup a cron job.
+</span><span class='line'>crontab -e
+</span><span class='line'>
+</span><span class='line'># Add the following replacing the path to the script:</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Backup the Cedi Journal database at 12am and 12pm everyday.</h1>
+
+<p>0 0,12 * * * /home/slash/drupal/cedijournal.com/sqlbackup-s3.sh
+&#8220;`</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Help -- SA-CORE-2014-005 Hack]]></title>

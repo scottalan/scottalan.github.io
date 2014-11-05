@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Security | Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/blog/categories/security/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-11-04T09:56:13-06:00</updated>
+  <updated>2014-11-05T09:06:32-06:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -44,7 +44,7 @@ diff -r -y --left-column drupal pre-update  &gt; dirdiff.txt
 
 <p>You should at least see:</p>
 
-<p>{% img center <a href="http://scottalan.github.io/images/mine/diff.png">http://scottalan.github.io/images/mine/diff.png</a> %}</p>
+<p><img class="center <a" src="href="http://scottalan.github.io/images/mine/diff.png">http://scottalan.github.io/images/mine/diff.png</a>&#8221;></p>
 
 <p>This is the patch that was posted for Drupal core: <a href="https://www.drupal.org/files/issues/SA-CORE-2014-005-D7.patch">https://www.drupal.org/files/issues/SA-CORE-2014-005-D7.patch</a></p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Database | Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/blog/categories/database/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-11-04T09:56:13-06:00</updated>
+  <updated>2014-11-05T09:06:32-06:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -77,7 +77,45 @@ nano sqlbackup-s3.sh;
 
 <h1>Add the following contents and make changes to variables where necessary:</h1>
 
-<p>{% gist b006a66bb4f3417285d1 sqlbackup-s3.sh %}</p>
+<p><div><script src='https://gist.github.com/b006a66bb4f3417285d1.js'></script>
+<noscript><pre><code>#!/bin/bash
+
+# Make directories: log and backup at the $DIR.
+# Move the &#39;.s3cfg&#39; file to the $DIR as well.
+
+# NOTE: CHANGE ALL VARIABLES TO MATCH YOUR NEEDS!
+
+# The name of the s3 bucket on Amazon.
+S3BUCKET=&quot;REPLACE_BUCKET_NAME&quot;
+
+# The name of the database to backup.
+DBNAME=&quot;REPLACE_DB_NAME&quot;
+
+# The email address to send log file to.
+EMAIL=&quot;REPLACE_EMAIL_ADDRESS&quot;
+
+# The path to directory above Drupal root.
+DIR=&quot;REPLACE/PATH/TO/DIR&quot;
+
+# Local sql dump directory.
+SQLDUMP=$DIR/sqldumps
+
+# The name of the file to be created for the backup.
+FILE=$DBNAME-`date &quot;+%Y%m%d-%H%M&quot;`.sql.gz
+
+if [ ! -f $DIR/s3/log/mysqlback.log ]; then
+  /usr/bin/touch $DIR/s3/log/mysqlback.log
+  echo &quot;subject: S3 database backup&quot; &gt;&gt; $DIR/s3/log/mysqlback.log
+fi
+
+mysqldump --defaults-extra-file=$DIR/s3/mysql.cnf $DBNAME | gzip -9 &gt; $SQLDUMP/$FILE
+/usr/local/bin/s3cmd --config $DIR/s3/.s3cfg put $SQLDUMP/$FILE s3://$S3BUCKET/ &gt;&gt; $DIR/s3/log/mysqlback.log
+sleep 5
+
+# This assumes there is a &#39;subject: My subject&#39; line in mysqlback.log. Will not
+# send without it.
+sendmail $EMAIL &lt; $DIR/s3/log/mysqlback.log</code></pre></noscript></div>
+</p>
 
 <h1>If sendmail doesn’t send, make sure the log file has a subject line. Should be added by the script:</h1>
 
@@ -91,12 +129,12 @@ nano sqlbackup-s3.sh;
 
 <h1>Add the following replacing the path to the script:</h1>
 
-<p>```</p>
+<p>&#8220;`</p>
 
 <h1>Backup the Cedi Journal database at 12am and 12pm everyday.</h1>
 
 <p>0 0,12 * * * /home/slash/drupal/cedijournal.com/sqlbackup-s3.sh
-```</p>
+&#8220;`</p>
 ]]></content>
   </entry>
   
