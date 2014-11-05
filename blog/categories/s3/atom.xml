@@ -4,7 +4,7 @@
   <title><![CDATA[Category: S3 | Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/blog/categories/s3/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-11-05T09:08:39-06:00</updated>
+  <updated>2014-11-05T09:10:26-06:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -63,11 +63,12 @@ sudo apt-get install python-dateutil python-magic
 <h1>Now we can configure s3</h1>
 
 <p><code>
-sudo s3cmd —configure
-(You need the Access Key and the Secret Key from s3.)
-You should see output like: Configuration saved to '/home/scott/.s3cfg’
-Move the .s3cfg file to your s3 directory
+sudo s3cmd —configure;
 </code></p>
+
+<p>(You need the Access Key and the Secret Key from s3.)
+You should see output like: Configuration saved to &lsquo;/home/[USER]/.s3cfg’
+Move the .s3cfg file to your s3 directory</p>
 
 <h1>Add the script just above Drupal root:</h1>
 
