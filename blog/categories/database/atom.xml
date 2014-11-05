@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Database | Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/blog/categories/database/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-11-05T09:11:29-06:00</updated>
+  <updated>2014-11-05T09:13:17-06:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -120,13 +120,19 @@ sendmail $EMAIL &lt; $DIR/s3/log/mysqlback.log</code></pre></noscript></div>
 
 <h1>If sendmail doesn’t send, make sure the log file has a subject line. Should be added by the script:</h1>
 
-<p>subject: S3 database backup</p>
+<p><code>
+subject: S3 database backup
+</code></p>
 
-<h1>Run the script and make sure the db uploaded to S3.</h1>
+<h3>Run the script and make sure the db uploaded to S3.</h3>
 
 <h1>Now we can setup a cron job.</h1>
 
-<p>crontab -e</p>
+<p>In the CLI:</p>
+
+<p><code>
+$ crontab -e
+</code></p>
 
 <h1>Add the following replacing the path to the script:</h1>
 

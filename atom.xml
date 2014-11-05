@@ -4,7 +4,7 @@
   <title><![CDATA[Scott Alan Henry]]></title>
   <link href="http://scottalan.github.io/atom.xml" rel="self"/>
   <link href="http://scottalan.github.io/"/>
-  <updated>2014-11-05T09:11:29-06:00</updated>
+  <updated>2014-11-05T09:13:17-06:00</updated>
   <id>http://scottalan.github.io/</id>
   <author>
     <name><![CDATA[scottalan]]></name>
@@ -128,13 +128,19 @@ sendmail $EMAIL &lt; $DIR/s3/log/mysqlback.log</code></pre></noscript></div>
 
 <h1>If sendmail doesn’t send, make sure the log file has a subject line. Should be added by the script:</h1>
 
-<p>subject: S3 database backup</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>subject: S3 database backup</span></code></pre></td></tr></table></div></figure>
 
-<h1>Run the script and make sure the db uploaded to S3.</h1>
+
+<h3>Run the script and make sure the db uploaded to S3.</h3>
 
 <h1>Now we can setup a cron job.</h1>
 
-<p>crontab -e</p>
+<p>In the CLI:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ crontab -e</span></code></pre></td></tr></table></div></figure>
+
 
 <h1>Add the following replacing the path to the script:</h1>
 
