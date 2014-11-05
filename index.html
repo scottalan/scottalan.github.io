@@ -240,9 +240,9 @@ sendmail $EMAIL &lt; $DIR/s3/log/mysqlback.log</code></pre></noscript></div>
 </span><span class='line'># Add the following replacing the path to the script:</span></code></pre></td></tr></table></div></figure>
 
 
-<h1>Backup the Cedi Journal database at 12am and 12pm everyday.</h1>
+<h1>Backup the database at 12am and 12pm everyday.</h1>
 
-<p>0 0,12 * * * /home/slash/drupal/cedijournal.com/sqlbackup-s3.sh
+<p>0 0,12 * * * /PATH/TO/DIR/ABOVE/ROOT/sqlbackup-s3.sh
 &#8220;`</p>
 </div>
   
